@@ -1,0 +1,272 @@
+import React, { useState, useEffect } from "react";
+import { createTask, updateTask } from "../api/api";
+
+const Taskform = ({ setTasks, selectedTask, setSelectedTask }) => {
+  // const [formData, setFormData] = useState({
+  //   title: "",
+  //   priority: "",
+  //   recurrence: "medium",
+  // });
+  const [task, setTask] = useState({
+    title: "",
+    description: " ",
+    recurrence: "medium",
+    priority: "low",
+    dueDate: "",
+  });
+  useEffect(() => {
+    if (selectedTask) {
+      setTask({
+        title: selectedTask.title,
+        description: selectedTask.description,
+        priority: selectedTask.priority || "Low",
+        dueDate: selectedTask.dueDate || "",
+      });
+    } else {
+      resetForm();
+    }
+  }, [selectedTask]);
+
+  // Reset form fields
+  const resetForm = () => {
+    setTask({ title: "", description: "", priority: "Low", dueDate: "" });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (selectedTask) {
+      // Update an existing task
+      setTasks((prevTasks) =>
+        prevTasks.map((t) =>
+          t._id === selectedTask._id
+            ? { ...t, ...task } // Update task with new values
+            : t
+        )
+      );
+      setSelectedTask(null); // Clear selected task after editing
+    } else {
+      // Add a new task
+      const newTask = {
+        ...task,
+        _id: Date.now(), // Generate a temporary ID (adjust for backend integration)
+        completed: false,
+      };
+      setTasks((prevTasks) => [...prevTasks, newTask]);
+
+    }
+
+    resetForm(); // Clear the form
+  };
+  // useEffect(() => {
+  //   if (selectedTasks) {
+  //     setTask({
+  //       title: selectedTasks.title,
+  //       description: selectedTasks.description,
+  //     });
+  //   }
+  // }, [selectedTasks]);
+
+  // const handleChange = (e) => {
+  //   setFormData({ ...formData, [e.target.name]: e.target.value });
+  // };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (!formData.title.trim()) return;
+  //   if (selectedTasks) {
+  //     const updatedTask = await updateTask(selectedTasks._id, formData);
+  //     setTasks((prev) =>
+  //       prev.map((task) => (task._id === updatedTask._id ? updatedTask : task))
+  //     );
+  //     setSelectedTasks(null);
+  //   } else {
+  //     // const newTask = await createTask(formData);
+  //     // setTasks((prev) => [...prev, newTask]);
+  //     await handleAddTask(formData);
+  //   }
+
+  //   setFormData({
+  //     title: "",
+  //     priority: "",
+  //     description: "",
+  //     recurrence: "medium",
+  //     dueDate: '',
+  //   });
+  // };
+  // const handleAddTask = async (taskData) => {
+  //   const newTask = await createTask(taskData);
+  //   setTasks((prevTasks) => {
+  //     const updatedTasks = [...prevTasks, newTask];
+  //     localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+  //     return updatedTasks;
+  //   });
+  // };
+
+  //   return (
+  //     <div className="task-form">
+  //       {/* <h2>{selectedTasks ? "Edit Task" : "Add New Task"}</h2> */}
+  //       <form onSubmit={handleSubmit}>
+  //         <input
+  //           type="text"
+  //           name="title"
+  //           placeholder="Task Titile..."
+  //           value={formData.title}
+  //           onChange={handleChange}
+  //           required
+  //         />
+  //         <textarea
+  //           name="description"
+  //           placeholder="Task Description"
+  //           value={formData.description}
+  //           onChange={handleChange}
+  //         ></textarea>
+  //         <select
+  //           name="priority"
+  //           value={formData.priority}
+  //           onChange={handleChange}
+  //         >
+  //           <option value="">Select Priority</option>
+  //           <option value="low">Low</option>
+  //           <option value="medium">Medium</option>
+  //           <option value="high">High</option>
+  //         </select>
+  //         <button type="submit">
+  //           {selectedTasks ? "Update Task" : "Add Task"}
+  //         </button>
+  //       </form>
+  //     </div>
+  //   );
+  // };
+//   return (
+//     <div className="task-form">
+//       <h2>{selectedTask ? "Edit Task" : "Add New Task"}</h2>
+//       <form onSubmit={handleSubmit}>
+//         <div>
+//           <label htmlFor="title">Title:</label>
+//           <input
+//             type="text"
+//             id="title"
+//             value={task.title}
+//             onChange={(e) => setTask({ ...task, title: e.target.value })}
+//             required
+//           />
+//         </div>
+//         <div>
+//           <label htmlFor="description">Description:</label>
+//           <textarea
+//             id="description"
+//             value={task.description}
+//             onChange={(e) => setTask({ ...task, description: e.target.value })}
+//             required
+//           />
+//         </div>
+//         <div>
+//           <label htmlFor="priority">Priority:</label>
+//           <select
+//             id="priority"
+//             value={task.priority}
+//             onChange={(e) => setTask({ ...task, priority: e.target.value })}
+//           >
+//             <option value="Low">Low</option>
+//             <option value="Medium">Medium</option>
+//             <option value="High">High</option>
+//           </select>
+//         </div>
+//         <div>
+//           <label htmlFor="dueDate">Due Date:</label>
+//           <input
+//             type="date"
+//             id="dueDate"
+//             value={task.dueDate}
+//             onChange={(e) => setTask({ ...task, dueDate: e.target.value })}
+//           />
+//         </div>
+//         <button type="submit">
+//           {selectedTask ? "Save Changes" : "Add Task"}
+//         </button>
+//         {selectedTask && (
+//           <button
+//             type="button"
+//             onClick={() => {
+//               setSelectedTask(null);
+//               resetForm();
+//             }}
+//           >
+//             Cancel
+//           </button>
+//         )}
+//       </form>
+//     </div>
+//   );
+// };
+
+// export default Taskform;
+  // const handleDelete = async () => {
+  //   await deleteTask(task._id);
+  //   setTasks((prev) => prev.filter((t) => t._id !== task._id));
+  // };
+
+    // const handleComplete = async () => {
+  //   const updatedTask = await completeTask(task._id);
+  //   setTasks((prev) =>
+  //     prev.map((t) => (t._id === updatedTask._id ? updatedTask : t))
+  //   );
+  // };
+
+      setTasks((prevTasks) => {
+      const updatedTasks = prevTasks.map((task) =>
+        task._id === taskId
+          ? {
+              ...task,
+              completed: !task.completed,
+              completedAt: task.completed ? null : new Date().toISOString(),
+            }
+          : task
+      );
+      localStorage.setItem("tasks", JSON.stringify(updatedTasks)); // Sync with localStorage
+      return updatedTasks;
+    });
+  };
+
+  import React, { useEffect, useState } from "react";
+import axios from "axios";
+
+const TaskTracking = () => {
+  const [completedTasks, setCompletedTasks] = useState([]);
+
+  useEffect(() => {
+    const fetchCompletedTasks = async () => {
+      try {
+        const response = await axios.get("/api/tasks/completed");
+        setCompletedTasks(response.data);
+      } catch (error) {
+        console.error("Failed to fetch completed tasks:", error);
+      }
+    };
+
+    fetchCompletedTasks();
+  }, []);
+
+  return (
+    <div className="task-tracking">
+      <h2>Task Tracking</h2>
+      <ul>
+        {completedTasks.length > 0 ? (
+          completedTasks.map((task) => (
+            <li key={task._id}>
+              {task.title} - Completed on{" "}
+              {task.completedAt
+                ? new Date(task.completedAt).toLocaleString()
+                : "Completion date unavailable"}
+            </li>
+          ))
+        ) : (
+          <li>No completed tasks yet.</li>
+        )}
+      </ul>
+    </div>
+  );
+};
+
+export default TaskTracking;

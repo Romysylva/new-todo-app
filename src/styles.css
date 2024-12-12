@@ -1,0 +1,150 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  background: #333;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+
+.task-form,
+.task-list,
+.leaderboard,
+.gamification-widget,
+.comments-section {
+  margin: 1rem auto;
+  max-width: 600px;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.delete-button {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: darkred;
+}
+/* Dark Mode */
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+button.dark-mode-toggle {
+  margin: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #444;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button.dark-mode-toggle:hover {
+  background-color: #666;
+}
+
+/* Timer */
+.timer {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.timer button {
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.timer button:hover {
+  background-color: #0056b3;
+}
+
+/* Progress Bar */
+.progress-bar {
+  margin: 1rem 0;
+  height: 20px;
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: #4caf50;
+  transition: width 0.3s ease;
+}
+
+/* Recurring Task Manager */
+.recurring-task-manager {
+  margin: 1rem auto;
+  max-width: 600px;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.recurring-task-manager ul {
+  list-style: none;
+  padding: 0;
+}
+
+.recurring-task-manager li {
+  margin: 0.5rem 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.recurring-task-manager select {
+  padding: 0.3rem;
+}
+
+/* Task Tracking */
+.task-tracking {
+  margin: 1rem auto;
+  max-width: 600px;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.task-tracking ul {
+  list-style: none;
+  padding: 0;
+}
+
+.task-tracking li {
+  margin: 0.5rem 0;
+}
+/* Progress Bar Styles */
+.progress-bar-container {
+  width: 100%;
+  background: #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 1rem 0;
+  height: 20px;
+}
+
+.progress-bar {
+  height: 100%;
+  background: #4caf50;
+  color: #fff;
+  text-align: center;
+  line-height: 20px;
+  font-size: 0.9rem;
+  transition: width 0.3s ease-in-out;
+  white-space: nowrap;
+}

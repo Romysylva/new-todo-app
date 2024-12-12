@@ -1,0 +1,68 @@
+.app {
+  background-color: white;
+  color: black;
+  padding: 20px;
+}
+
+.dark-mode {
+  background-color: #121212;
+  color: white;
+}
+
+.filters.input {
+  margin-right: 10px;
+}
+button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ddd;
+}
+
+button:active {
+  background-color: #007bff;
+  color: white;
+  border: none;
+}
+
+select {
+  margin-left: 10px;
+}
+/* Progress Bar Styles */
+/* Progress Bar Styles */
+
+.progress-bar-container {
+  width: 100%;
+  background: #e0e0e0;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 0.5rem 0;
+  height: 100%;
+}
+
+.progress-bar {
+  height: 10%;
+  color: #fff;
+  text-align: center;
+  line-height: 20px;
+  font-size: 0.9rem;
+  transition: width 0.8s ease-in-out, background-color 0.8s ease-in-out;
+  white-space: nowrap;
+}
+
+.task-item.active {
+  background-color: #d4fcd4; /* Light green */
+  border: 1px solid #4caf50; /* Green border */
+}
+
+.task-item.inactive {
+  background-color: #fcd4d4; /* Light red */
+  border: 1px solid #f44336; /* Red border */
+  opacity: 0.6; /* Dim the task */
+}
+
